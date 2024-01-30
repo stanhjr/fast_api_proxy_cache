@@ -8,7 +8,8 @@ from starlette.responses import JSONResponse
 
 app = FastAPI()
 
-pool = redis.ConnectionPool(host='localhost', port=6379)
+pool = redis.ConnectionPool(host='redis', port=6379)
+
 
 REMOTE_URL = os.environ.get('REMOTE_URL')
 
