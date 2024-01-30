@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+
+  fast_api:
+    container_name: "fast_api"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - "./src:/opt/app"
+    ports:
+      - 8000:8000
+    command: "sh -c 'uvicorn main:app --reload --workers 3 --host 0.0.0.0 --port 8000'"
+    depends_on:
+      - redis
+    env_file:
+      - .env
+
+  redis:
+    image: redis:latest
+    restart: always
+    #hardcode password
+    command: redis-server --appendonly yes --replica-read-only no --requirepass 8QQnjhHdnAj9ZgVpB5AZSDpZCHpLne
+    hostname: redis
+    ports:
+      - 6379:6379
