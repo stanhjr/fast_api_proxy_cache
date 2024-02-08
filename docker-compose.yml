@@ -13,7 +13,7 @@ services:
     depends_on:
       - web
 
-  fast_api:
+  web:
     container_name: "fast_api"
     logging:
       driver: "json-file"
