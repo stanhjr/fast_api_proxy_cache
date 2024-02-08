@@ -2,16 +2,16 @@ version: '3'
 
 services:
 
-  nginx:
-    image: nginx:latest
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx:/etc/nginx/conf.d
-      - ./static:/app/static
-      - ./media:/app/media
-    depends_on:
-      - web
+#  nginx:
+#    image: nginx:latest
+#    ports:
+#      - "80:80"
+#    volumes:
+#      - ./nginx:/etc/nginx/conf.d
+#      - ./static:/app/static
+#      - ./media:/app/media
+#    depends_on:
+#      - web
 
   web:
     container_name: "fast_api_proxy"
