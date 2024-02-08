@@ -20,7 +20,7 @@ async def get_cache_key(partner_id: int, auth_key: str) -> str:
     return f"{partner_id}_{auth_key}"
 
 
-@app.get("/api/v1/bet_insights/partner-sports")
+@app.get("/api/v1/bet_insights/partner-widgets_settings/")
 async def proxy(request: Request):
     partner_id = request.headers.get("Partner-id")
     authorization = request.headers.get("Authorization")
@@ -38,4 +38,4 @@ async def proxy(request: Request):
         if response.status_code == 200:
             await redis_client.set(name=cache_key, value=json.dumps(response.json()))
 
-        return JSONResponse(status_code=response.status_code, content=response.content, headers=response.headers)
+        return JSONResponse(status_code=response.status_code, content=response.json(), headers=response.headers)
