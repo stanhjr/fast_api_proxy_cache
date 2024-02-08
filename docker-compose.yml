@@ -2,6 +2,17 @@ version: '3'
 
 services:
 
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./static:/app/static
+      - ./media:/app/media
+    depends_on:
+      - web
+
   fast_api:
     container_name: "fast_api"
     logging:
