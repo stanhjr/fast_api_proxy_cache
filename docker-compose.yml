@@ -14,7 +14,7 @@ services:
       - web
 
   web:
-    container_name: "fast_api"
+    container_name: "fast_api_proxy"
     logging:
       driver: "json-file"
       options:
@@ -36,8 +36,6 @@ services:
   redis:
     image: redis:latest
     restart: always
-    #hardcode password
-    command: redis-server --appendonly yes --replica-read-only no --requirepass 8QQnjhHdnAj9ZgVpB5AZSDpZCHpLne
     hostname: redis
     ports:
       - 6379:6379
